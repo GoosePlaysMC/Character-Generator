@@ -67,7 +67,6 @@ decide_name()
 
 print(f"\nYour character named {name.capitalize()} is complete!\n")
 
-#decide_file_path()
 create_file()
 
 print("Done! Your character file has been saved.")
