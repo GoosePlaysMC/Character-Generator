@@ -24,6 +24,7 @@ def decide_race():
 def decide_name():
     global name
     name = input("What would you like to name your character?" + p).lower()
+    print(f"\nYour options for {name.capitalize()} are complete!\n")
 
 def roll_stats(race):
     global strength, dexterity, constitution, intelligence, wisdom, charisma
@@ -53,6 +54,7 @@ def create_file(f):
     file = open(f, "w")
     file.write(f"{name.capitalize()} the {race.capitalize()}\n\nStrength: {strength}\nDexterity: {dexterity}\nConstitution: {constitution}\nIntelligence: {intelligence}\nWisdom: {wisdom}\nCharisma: {charisma}\n")
     file.close()
+    print("Done! Your character file has been saved.")
 
 def decide_file_path():
     global save_path, file_name
@@ -68,13 +70,11 @@ def decide_file_path():
     
     return complete_name
 
-decide_race()
-roll_stats(race)
-decide_name()
+def start():
+    decide_race()
+    roll_stats(race)
+    decide_name()
+    complete_file_name = decide_file_path()
+    create_file(complete_file_name)
 
-print(f"\nYour character named {name.capitalize()} is complete!\n")
-
-complete_file_name = decide_file_path()
-create_file(complete_file_name)
-
-print("Done! Your character file has been saved.")
+start()
