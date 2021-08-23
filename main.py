@@ -21,6 +21,9 @@ def decide_race():
         print("Invalid race! Choose either human, elf, or orc.")
         decide_race()
 
+def decide_name():
+    name = input("What would you like to name your character?" + p).lower()
+
 def roll_stats(race):
     global strength, dexterity, constitution, intelligence, wisdom, charisma
     if(race == "human"):
@@ -45,20 +48,23 @@ def roll_stats(race):
         wisdom = random.randint(4, 6)
         charisma = random.randint(4, 6)
 
+def create_file(file_name):
+    file = open(complete_name, "w")
+    file.write(f"{name.capitalize()} the {race.capitalize()}\n\nStrength: {strength}\nDexterity: {dexterity}\nConstitution: {constitution}\nIntelligence: {intelligence}\nWisdom: {wisdom}\nCharisma: {charisma}\n")
+    file.close()
+
+def decide_file_path():
+    save_path = input("Choose the path to save your character file (leave blank to be placed in current directory)." + p)
+    file_name = input("Choose a name for your character file." + p)
+    complete_name = os.path.join(save_path, file_name+".txt")
+
 decide_race()
-
 roll_stats(race)
+decide_name()
 
-name = input("What would you like to name your character?" + p).lower()
+print(f"\nYour character named {name.capitalize()} is complete!\n")
 
-print(f"\nYour character named {name} is complete!\n")
+decide_file_path()
+create_file()
 
-save_path = input("Choose the path to save your character file (leave blank to be placed in current directory)." + p)
-file_name = input("Choose a name for your character file." + p)
-complete_name = os.path.join(save_path, file_name+".txt")
-
-file = open(complete_name, "w")
-file.write(f"{name.capitalize()} the {race.capitalize()}\n\nStrength: {strength}\nDexterity: {dexterity}\nConstitution: {constitution}\nIntelligence: {intelligence}\nWisdom: {wisdom}\nCharisma: {charisma}\n")
-file.close()
-
-print("Done! Your character file has been saved")
+print("Done! Your character file has been saved.")
